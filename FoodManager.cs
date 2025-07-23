@@ -7,7 +7,7 @@ namespace WildlifeTrackerSystem
     /// Most of its functionality comes from its base class, ListManager, except for establishing EaterType.
     /// 
     /// </summary>
-    public class FoodManager : ListManager<FoodItem>
+    public class FoodManager : ListManager<Meal>
     {
         private EEaterType _eaterType;
         private List<string> _foodList;

@@ -4,13 +4,13 @@
     /// Class that represents an animal's meal. It is represented by a name and a list of ingredients (foods).
     /// It's linked to a particular animal selected by the user through AnimalId property.
     /// </summary>
-    public class FoodItem
+    public class Meal
     {
         private string _id;
         private string _name;
         private ListManager<string> _ingredients;
 
-        public FoodItem()
+        public Meal()
         {
             _ingredients = new ListManager<string>();
         }

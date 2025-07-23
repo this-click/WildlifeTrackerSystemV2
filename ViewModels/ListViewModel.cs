@@ -288,7 +288,7 @@ namespace WildlifeTrackerSystem.ViewModels
 
             for (int i = 0; i < numMeals; i++)
             {
-                FoodItem meal = foodManager.GetAt(i);
+                Meal meal = foodManager.GetAt(i);
                 if (meal != null && meal.AnimalId == SelectedAnimal.Id)
                     mealsTxt += meal;
             }

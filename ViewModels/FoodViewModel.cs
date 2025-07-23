@@ -33,12 +33,12 @@ namespace WildlifeTrackerSystem.ViewModels
         [ObservableProperty]
         bool isEditMode;
 
-        private FoodItem meal;
+        private Meal meal;
         private FoodManager foodManager;
 
         public FoodViewModel(FoodManager foodManager)
         {
-            meal = new FoodItem();
+            meal = new Meal();
             MealIngredients = new ObservableCollection<string>();
 
             // foodManager is injected as a dependency, this is constructor injection. 
@@ -79,7 +79,8 @@ namespace WildlifeTrackerSystem.ViewModels
                 if (!string.IsNullOrEmpty(IngredientName))
                 {
                     meal.Ingredients.ChangeAt(IngredientName, index);
-                    MealIngredients[index] = IngredientName;
+                    if (index >= 0)
+                        MealIngredients[index] = IngredientName;
                     
                     //Reset field, selection, edit mode
                     IngredientName = "";
@@ -129,6 +130,7 @@ namespace WildlifeTrackerSystem.ViewModels
 
                     //Resets ingredient selection in the form.
                     SelectedIngredient = string.Empty;
+                    IngredientName = string.Empty;
                 }
             }
         }
