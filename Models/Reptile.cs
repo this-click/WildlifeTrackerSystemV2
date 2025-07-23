@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography;
-
-namespace WildlifeTrackerSystem.Models
+﻿namespace WildlifeTrackerSystem.Models
 {
     /// <summary>
     /// Reptile is an Animal

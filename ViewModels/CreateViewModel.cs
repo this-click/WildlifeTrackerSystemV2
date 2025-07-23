@@ -8,7 +8,7 @@ namespace WildlifeTrackerSystem.ViewModels
 {
     public partial class CreateViewModel : ViewModelBase
     {
-        //static binding to Animal, type of Animal is determined dynamically
+        // Type of Animal is determined dynamically
         private Animal currentAnimal;
 
         // Animal observable properties
