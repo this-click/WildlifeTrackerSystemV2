@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="WildlifeTrackerSystem.Views.Ray"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:WildlifeTrackerSystem.ViewModels"
+    x:DataType="viewmodel:CreateViewModel">
+    <Grid
+        x:Name="rayGrid"
+        ColumnDefinitions=".35*, .65*"
+        ColumnSpacing="10"
+        RowDefinitions="Auto, Auto"
+        RowSpacing="10">
+        <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="5"
+            Text="Has spots?" />
+        <HorizontalStackLayout
+            Grid.Row="0"
+            Grid.Column="1"
+            RadioButtonGroup.GroupName="SpotsGrp"
+            RadioButtonGroup.SelectedValue="{Binding HasSpots}">
+            <RadioButton
+                Content="Yes"
+                GroupName="SpotsGrp"
+                Value="True" />
+            <RadioButton
+                Content="No"
+                GroupName="SpotsGrp"
+                Value="False" />
+        </HorizontalStackLayout>
+        <Label
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="5"
+            Text="Reproduction type" />
+        <Entry
+            Grid.Row="1"
+            Grid.Column="1"
+            Placeholder="Enter text"
+            Text="{Binding ReproductionType}" />
+    </Grid>
+</ContentView>

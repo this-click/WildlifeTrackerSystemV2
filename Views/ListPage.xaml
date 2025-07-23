@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="WildlifeTrackerSystem.Views.ListPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:WildlifeTrackerSystem.Models"
+    xmlns:viewmodel="clr-namespace:WildlifeTrackerSystem.ViewModels"
+    x:DataType="viewmodel:ListViewModel">
+
+    <ContentPage.MenuBarItems>
+        <MenuBarItem Text="Load file">
+            <MenuFlyoutItem Command="{Binding OpenJsonCommand}" Text="Json" />
+        </MenuBarItem>
+        <MenuBarItem Text="Save to file">
+            <MenuFlyoutItem Command="{Binding SaveJsonCommand}" Text="Save as Json" />
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
+    <ScrollView>
+        <Border
+            Padding="25,10"
+            BackgroundColor="#FFEFC8"
+            StrokeShape="RoundRectangle 6">
+            <Border.Shadow>
+                <Shadow
+                    Brush="Gray"
+                    Opacity="0.8"
+                    Radius="40"
+                    Offset="5,15" />
+            </Border.Shadow>
+            <Grid
+                x:Name="mainContainer"
+                BackgroundColor="#FFEFC8"
+                ColumnDefinitions=".45*, .30*, .25*"
+                ColumnSpacing="10"
+                RowDefinitions="50, Auto, Auto">
+
+                <Label
+                    Grid.Row="0"
+                    Grid.ColumnSpan="3"
+                    FontAttributes="Bold"
+                    FontSize="Title"
+                    Text="Animals list" />
+                <!--  Animal list  -->
+                <Border
+                    x:Name="animallist"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Padding="5,15"
+                    BackgroundColor="#FFEFC8"
+                    StrokeShape="RoundRectangle 6">
+                    <Border.Shadow>
+                        <Shadow
+                            Brush="Gray"
+                            Opacity="0.8"
+                            Radius="40"
+                            Offset="5,15" />
+                    </Border.Shadow>
+                    <CollectionView
+                        ItemsSource="{Binding Animals}"
+                        SelectedItem="{Binding SelectedAnimal}"
+                        SelectionChangedCommand="{Binding AnimalChangedCommand}"
+                        SelectionMode="Single">
+                        <CollectionView.Header>
+                            <Grid x:Name="header" ColumnDefinitions="100, .6*, .4*">
+                                <Label
+                                    Grid.Column="0"
+                                    Margin="10,0,0,0"
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    Text="Id" />
+                                <Label
+                                    Grid.Column="1"
+                                    Margin="30,0,0,0"
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    Text="Name" />
+                                <Label
+                                    Grid.Column="2"
+                                    Margin="50,0,0,0"
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    Text="Age" />
+
+                            </Grid>
+                        </CollectionView.Header>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:Animal">
+                                <Grid
+                                    x:Name="animalEntry"
+                                    Padding="10"
+                                    ColumnDefinitions="100, .6*, .4*">
+                                    <Label
+                                        Grid.Column="0"
+                                        Margin="10,0,0,0"
+                                        Text="{Binding Id}" />
+
+                                    <Label
+                                        Grid.Column="1"
+                                        Margin="30,0,0,0"
+                                        Text="{Binding Name}" />
+
+                                    <Label
+                                        Grid.Column="2"
+                                        Margin="60,0,0,0"
+                                        Text="{Binding Age}" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Border>
+
+                <!--  Food info  -->
+                <VerticalStackLayout
+                    x:Name="foodInfo"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    IsVisible="{Binding IsExtraVisible}">
+                    <Border
+                        Margin="14,14,14,14"
+                        Padding="15,15"
+                        BackgroundColor="#FFD95F"
+                        StrokeShape="RoundRectangle 6">
+                        <Border.Shadow>
+                            <Shadow
+                                Brush="Gray"
+                                Opacity="0.8"
+                                Radius="40"
+                                Offset="5,15" />
+                        </Border.Shadow>
+                        <StackLayout>
+                            <Label
+                                Grid.Row="0"
+                                FontAttributes="Bold"
+                                Text="{Binding EaterType}"
+                                VerticalTextAlignment="Center" />
+                            <Label Grid.Row="1" Text="{Binding FoodSchedule}" />
+                            <HorizontalStackLayout HorizontalOptions="Center">
+                                <Button
+                                    Margin="20,32,0,0"
+                                    BackgroundColor="#626F47"
+                                    Command="{Binding UpdateFoodCommand}"
+                                    FontAttributes="Bold"
+                                    HeightRequest="40"
+                                    Text="Add meal"
+                                    WidthRequest="110" />
+                            </HorizontalStackLayout>
+
+                        </StackLayout>
+                    </Border>
+                </VerticalStackLayout>
+
+                <!--  Extra info  -->
+                <VerticalStackLayout
+                    x:Name="extraInfo"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    IsVisible="{Binding IsExtraVisible}">
+                    <Border
+                        Margin="14,14,14,14"
+                        Padding="15,15"
+                        BackgroundColor="#B8D576"
+                        StrokeShape="RoundRectangle 6">
+                        <Border.Shadow>
+                            <Shadow
+                                Brush="Gray"
+                                Opacity="0.8"
+                                Radius="40"
+                                Offset="5,15" />
+                        </Border.Shadow>
+                        <StackLayout>
+                            <Label
+                                Grid.Row="0"
+                                Margin="10,0,0,0"
+                                Text="{Binding ExtraInfo}" />
+                        </StackLayout>
+                    </Border>
+                </VerticalStackLayout>
+
+                <!--  Buttons  -->
+                <VerticalStackLayout x:Name="buttonContainer" Grid.Row="2">
+                    <HorizontalStackLayout HorizontalOptions="Center">
+                        <Button
+                            x:Name="addNewAnimal"
+                            Grid.Column="0"
+                            Margin="0,50,10,0"
+                            BackgroundColor="#D70654"
+                            Command="{Binding AddCommand}"
+                            FontAttributes="Bold"
+                            HeightRequest="40"
+                            Text="Add new"
+                            WidthRequest="130" />
+                        <Button
+                            x:Name="deleteAnimal"
+                            Grid.Column="1"
+                            Margin="10,50,10,0"
+                            BackgroundColor="#D70654"
+                            Command="{Binding DeleteCommand}"
+                            FontAttributes="Bold"
+                            HeightRequest="40"
+                            Text="Delete"
+                            WidthRequest="130" />
+                        <Button
+                            x:Name="updateAnimal"
+                            Grid.Column="2"
+                            Margin="10,50,0,0"
+                            BackgroundColor="#D70654"
+                            Command="{Binding UpdateCommand}"
+                            FontAttributes="Bold"
+                            HeightRequest="40"
+                            Text="Update"
+                            WidthRequest="130" />
+                    </HorizontalStackLayout>
+                    <Button
+                        Margin="20,32,0,0"
+                        BackgroundColor="#626F47"
+                        Command="{Binding GoHomeCommand}"
+                        FontAttributes="Bold"
+                        HeightRequest="40"
+                        Text="Go Home"
+                        WidthRequest="110" />
+                </VerticalStackLayout>
+            </Grid>
+        </Border>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="WildlifeTrackerSystem.Views.FoodPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:WildlifeTrackerSystem.ViewModels"
+    Title="FoodPage"
+    x:DataType="viewmodel:FoodViewModel">
+    <ScrollView>
+        <Border
+            Padding="25,25"
+            BackgroundColor="#FFEFC8"
+            StrokeShape="RoundRectangle 6">
+            <Border.Shadow>
+                <Shadow
+                    Brush="Gray"
+                    Opacity="0.8"
+                    Radius="40"
+                    Offset="5,15" />
+            </Border.Shadow>
+            <Grid
+                x:Name="mainContainer"
+                Padding="10"
+                ColumnDefinitions=".5*, .5*"
+                ColumnSpacing="10">
+                <Grid
+                    x:Name="addContainer"
+                    Grid.Column="0"
+                    ColumnDefinitions="200, 400, 50"
+                    ColumnSpacing="10"
+                    RowDefinitions="55, 55, 80"
+                    RowSpacing="10">
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="5"
+                        Text="Meal name" />
+                    <Entry
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        BackgroundColor="#FFEFC8"
+                        MaxLength="64"
+                        Placeholder="Enter text"
+                        Text="{Binding MealName}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="5"
+                        Text="Ingredient name" />
+                    <Entry
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        BackgroundColor="#FFEFC8"
+                        MaxLength="64"
+                        Placeholder="Enter text"
+                        Text="{Binding IngredientName}" />
+                    <Button
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Margin="0,10,0,0"
+                        BackgroundColor="#626F47"
+                        Command="{Binding AddIngredientsCommand}"
+                        FontAttributes="Bold"
+                        Text="+" />
+                    <StackLayout Grid.Row="3" Grid.ColumnSpan="2">
+                        <Button
+                            Margin="0,10,0,0"
+                            BackgroundColor="#D70654"
+                            Command="{Binding SaveMealCommand}"
+                            FontAttributes="Bold"
+                            Text="Save meal"
+                            WidthRequest="110" />
+                    </StackLayout>
+                </Grid>
+                <Grid
+                    x:Name="listContainer"
+                    Grid.Column="1"
+                    RowDefinitions="Auto, Auto">
+
+                    <CollectionView
+                        Grid.Row="0"
+                        ItemsLayout="VerticalList"
+                        ItemsSource="{Binding MealIngredients}"
+                        SelectedItem="{Binding SelectedIngredient}"
+                        SelectionMode="Single">
+
+                        <CollectionView.Header>
+                            <Label
+                                FontAttributes="Bold"
+                                HorizontalOptions="Center"
+                                Text="{Binding MealName}" />
+                        </CollectionView.Header>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="{x:Type x:String}">
+                                <VerticalStackLayout>
+                                    <Label HorizontalOptions="Center" Text="{Binding .}" />
+                                </VerticalStackLayout>
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+
+                    </CollectionView>
+
+
+                    <HorizontalStackLayout Grid.Row="1" HorizontalOptions="Center">
+                        <Button
+                            Margin="30,10,0,0"
+                            BackgroundColor="#626F47"
+                            Command="{Binding UpdateCommand}"
+                            FontAttributes="Bold"
+                            Text="Edit"
+                            WidthRequest="80" />
+                        <Button
+                            Margin="30,10,0,0"
+                            BackgroundColor="#626F47"
+                            Command="{Binding DeleteCommand}"
+                            FontAttributes="Bold"
+                            Text="Delete"
+                            WidthRequest="80" />
+                    </HorizontalStackLayout>
+
+                </Grid>
+            </Grid>
+        </Border>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="WildlifeTrackerSystem.Views.Fangtooth"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:WildlifeTrackerSystem.ViewModels"
+    x:DataType="viewmodel:CreateViewModel">
+    <Grid
+        x:Name="donkeyGrid"
+        ColumnDefinitions=".35*, .65*"
+        ColumnSpacing="10"
+        RowDefinitions="Auto, Auto"
+        RowSpacing="10">
+        <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="5"
+            Text="Preferred depth" />
+        <Entry
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="0,5,0,0"
+            Placeholder="Enter number"
+            Text="{Binding PreferredDepth}" />
+        <Label
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="5"
+            Text="Is hungry?" />
+        <HorizontalStackLayout
+            Grid.Row="1"
+            Grid.Column="1"
+            RadioButtonGroup.GroupName="HungryGrp"
+            RadioButtonGroup.SelectedValue="{Binding IsHungry}">
+            <RadioButton
+                Content="Yes"
+                GroupName="HungryGrp"
+                Value="True" />
+            <RadioButton
+                Content="No"
+                GroupName="HungryGrp"
+                Value="False" />
+        </HorizontalStackLayout>
+    </Grid>
+</ContentView>

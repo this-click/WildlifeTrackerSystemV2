@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="WildlifeTrackerSystem.Views.Summary"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:WildlifeTrackerSystem.ViewModels"
+    x:DataType="viewmodel:CreateViewModel">
+    <Grid
+        ColumnSpacing="10"
+        RowDefinitions="40, *, 70"
+        RowSpacing="10">
+        <Label
+            Grid.Row="0"
+            FontAttributes="Bold"
+            FontSize="Small"
+            HorizontalTextAlignment="Center"
+            Text="Summary" />
+        <Label
+            Grid.Row="1"
+            Margin="20,0,0,0"
+            HorizontalOptions="Start"
+            Text="{Binding SummaryText}" />
+        <Button
+            Grid.Row="2"
+            Margin="0,20,0,0"
+            BackgroundColor="#EAA64D"
+            Command="{Binding ListCommand}"
+            FontAttributes="Bold"
+            HeightRequest="40"
+            Text="List animals"
+            TextColor="Black"
+            WidthRequest="130" />
+    </Grid>
+</ContentView>

@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="WildlifeTrackerSystem.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:WildlifeTrackerSystem.Views"
+    xmlns:selectors="clr-namespace:WildlifeTrackerSystem.Views.selectors"
+    xmlns:viewmodel="clr-namespace:WildlifeTrackerSystem.ViewModels"
+    x:Name="thisMenuBarWorkaround"
+    x:DataType="viewmodel:MainViewModel">
+    <ContentPage.MenuBarItems>
+        <!--
+            Workaround for bug #5382 - Commands bound with MenuBar items fail to execute after navigation due to the original BindingContext issue.
+            https://github.com/dotnet/maui/issues/10835
+        -->
+        <MenuBarItem BindingContext="{Binding Path=BindingContext, Source={x:Reference thisMenuBarWorkaround}}" Text="App">
+            <MenuFlyoutItem Command="{Binding ResetCommand}" Text="Reset data" />
+            <MenuFlyoutItem Command="{Binding ExitCommand}" Text="Exit" />
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
+    <ScrollView>
+        <Grid ColumnDefinitions=".5*, .5*">
+            <Border
+                x:Name="welcomeText"
+                Grid.Column="0"
+                Margin="10,0,0,14"
+                Padding="16,16"
+                BackgroundColor="#FFEFC8"
+                StrokeShape="RoundRectangle 6">
+                <Border.Shadow>
+                    <Shadow
+                        Brush="Gray"
+                        Opacity="0.8"
+                        Radius="20"
+                        Offset="5,15" />
+                </Border.Shadow>
+                <VerticalStackLayout Margin="10,0,0,14" Padding="16,16">
+                    <Label
+                        x:Name="title"
+                        Margin="20,60,0,0"
+                        FontAttributes="Bold"
+                        FontSize="Title"
+                        HorizontalTextAlignment="Center"
+                        Text="Welcome to the Wild Life Tracker System !" />
+                    <Label
+                        x:Name="p1"
+                        Margin="20,70,0,0"
+                        FontSize="Body"
+                        Text="This app will help you keep the feeding schedule of the animals in your care." />
+                    <Label
+                        x:Name="p2"
+                        Margin="20,0,0,0"
+                        FontSize="Body"
+                        Text="You can add and edit animals, keep their info updated, so you always know which alpaca needs shaving and which donkey could do with a topping of carrots." />
+                    <VerticalStackLayout x:Name="p3" Margin="40,20,0,0">
+                        <Label Text="* Start by adding some animals" />
+                        <Label Text="    ... or you can import animals from a file." />
+                        <Label Text="* You can save animals to a local file" />
+                        <Label Text="    ... and reset by clicking App &gt; Reset data." />
+                    </VerticalStackLayout>
+                    <HorizontalStackLayout
+                        x:Name="buttons"
+                        Margin="0,50,0,0"
+                        HorizontalOptions="Center">
+                        <Button
+                            Margin="0,10,10,0"
+                            BackgroundColor="#D70654"
+                            Command="{Binding AddAnimalCommand}"
+                            FontAttributes="Bold"
+                            Text="Add animal"
+                            WidthRequest="110" />
+                        <Button
+                            Margin="20,10,10,0"
+                            BackgroundColor="#D70654"
+                            Command="{Binding ListAnimalsCommand}"
+                            FontAttributes="Bold"
+                            Text="List animals"
+                            WidthRequest="110" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+            <Border
+                x:Name="pictureContainer"
+                Grid.Column="1"
+                Margin="5,0,10,14"
+                Padding="16,16"
+                BackgroundColor="#FFEFC8"
+                StrokeShape="RoundRectangle 6">
+                <Border.Shadow>
+                    <Shadow
+                        Brush="Gray"
+                        Opacity="0.8"
+                        Radius="20"
+                        Offset="5,15" />
+                </Border.Shadow>
+                <Image
+                    Grid.Column="1"
+                    BackgroundColor="Transparent"
+                    Source="birds_on_lake.jpg" />
+            </Border>
+        </Grid>
+    </ScrollView>
+</ContentPage>

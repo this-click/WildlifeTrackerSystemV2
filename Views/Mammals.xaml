@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="WildlifeTrackerSystem.Views.Mammals"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:WildlifeTrackerSystem.Views"
+    xmlns:selectors="clr-namespace:WildlifeTrackerSystem.Views.selectors"
+    xmlns:viewmodel="clr-namespace:WildlifeTrackerSystem.ViewModels"
+    x:DataType="viewmodel:CreateViewModel">
+    <Grid
+        x:Name="mammalGrid"
+        Padding="10"
+        ColumnDefinitions=".35*, .65*"
+        ColumnSpacing="10"
+        RowDefinitions="Auto, Auto, Auto, Auto, Auto"
+        RowSpacing="10">
+        <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="5"
+            Text="Habitat" />
+        <Entry
+            Grid.Row="0"
+            Grid.Column="1"
+            BackgroundColor="Bisque"
+            Placeholder="Enter text"
+            Text="{Binding MammalHabitatName}" />
+        <Label
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="5"
+            Text="Activity time" />
+        <Entry
+            Grid.Row="1"
+            Grid.Column="1"
+            BackgroundColor="Bisque"
+            Placeholder="Enter text"
+            Text="{Binding MammalActivityTime}" />
+        <Label
+            Grid.Row="2"
+            Grid.Column="0"
+            Margin="5"
+            Text="Species" />
+        <!--  ItemsSource attribute is set in code behind  -->
+        <Picker
+            x:Name="speciesPicker"
+            Grid.Row="2"
+            Grid.Column="1"
+            BackgroundColor="Bisque"
+            IsEnabled="{Binding IsSpeciesEnabled}"
+            ItemDisplayBinding="{Binding}"
+            SelectedItem="{Binding SelectedSpecies}" />
+
+        <VerticalStackLayout
+            Grid.Row="3"
+            Grid.ColumnSpan="2"
+            BackgroundColor="LightYellow">
+            <selectors:MammalSpeciesSelector Condition="{Binding SelectedSpecies}">
+
+                <selectors:MammalSpeciesSelector.Option1>
+                    <local:Alpaca />
+                </selectors:MammalSpeciesSelector.Option1>
+
+                <selectors:MammalSpeciesSelector.Option2>
+                    <local:Donkey />
+                </selectors:MammalSpeciesSelector.Option2>
+
+            </selectors:MammalSpeciesSelector>
+        </VerticalStackLayout>
+    </Grid>
+</ContentView>

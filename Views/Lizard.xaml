@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="WildlifeTrackerSystem.Views.Lizard"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:WildlifeTrackerSystem.ViewModels"
+    x:DataType="viewmodel:CreateViewModel">
+    <Grid
+        x:Name="lizardGrid"
+        ColumnDefinitions=".35*, .65*"
+        ColumnSpacing="10"
+        RowDefinitions="Auto, Auto"
+        RowSpacing="10">
+        <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="5"
+            Text="Size" />
+        <Entry
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="0,5,0,0"
+            Placeholder="Enter number"
+            Text="{Binding LizardSize}" />
+
+        <Label
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="5"
+            Text="Is Venomous?" />
+        <HorizontalStackLayout
+            Grid.Row="1"
+            Grid.Column="1"
+            RadioButtonGroup.GroupName="VenomousGrp"
+            RadioButtonGroup.SelectedValue="{Binding IsLizardVenomous}">
+            <RadioButton
+                Content="Yes"
+                GroupName="VenomousGrp"
+                Value="True" />
+            <RadioButton
+                Content="No"
+                GroupName="VenomousGrp"
+                Value="False" />
+        </HorizontalStackLayout>
+    </Grid>
+</ContentView>
