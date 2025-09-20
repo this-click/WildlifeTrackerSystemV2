@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WildlifeTrackerSystemV3", "WildlifeTrackerSystemV3.csproj", "{247C3906-75F8-4A4F-ADAE-5FB1426BDE55}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WildlifeTrackerSystemV2", "WildlifeTrackerSystemV2.csproj", "{247C3906-75F8-4A4F-ADAE-5FB1426BDE55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,5 +20,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C6805A47-1F1A-4634-939D-477D709F1797}
 	EndGlobalSection
 EndGlobal
